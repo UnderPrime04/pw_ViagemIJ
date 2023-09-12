@@ -31,4 +31,12 @@ public class ViagemController {
     Viagem inserida = repository.save(body);
     return inserida;
     }
+    @PutMapping("/Id")
+    public Viagem alterar(@PathVariable Long id,
+                           @RequestBody Viagem obj) {
+        Optional<Viagem> existe = buscarporId(id);
+        if (existe.isPresent())
+            repository.save(obj);
+        return obj;
+    }
 }

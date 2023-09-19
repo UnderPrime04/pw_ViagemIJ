@@ -3,6 +3,7 @@ package br.com.etechoracio.pw3viagens.Controller;
 import br.com.etechoracio.pw3viagens.Entity.Viagem;
 import br.com.etechoracio.pw3viagens.Repository.ViagensRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,4 +40,18 @@ public class ViagemController {
             repository.save(obj);
         return obj;
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> excluir(@PathVariable Long id)
+    {
+        Optional<Viagem> existe = buscarporId(id);
+        if (existe.isPresent()) {
+            repository.deleteById(id);
+        return  ResponseEntity.ok().build();
+        }
+        else
+            return ResponseEntity.notFound().build();
+    }
+
+
 }

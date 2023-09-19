@@ -31,7 +31,5 @@ public class Gastos {
     @Column(name="VLR_GASTO")
     private double valorGasto;
 
-    // Fabia e Allan
-
 
 }
